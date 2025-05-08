@@ -13,48 +13,37 @@ const bookingRoute = require('./routes/bookings');
 
 dotenv.config();
 const app = express();
-const port = process.env.PORT || 4000;
 const corsOptions = {
-    origin:true,
-    credentials:true,
+    origin: true,
+    credentials: true,
 };
 
-//database connection
+// database connection
 mongoose.set('strictQuery', false);
-const connect = async()=> {
+const connect = async () => {
     try {
         await mongoose.connect(process.env.MONGO_URI);
-
         console.log('MongoDB database connected');
     } catch (err) {
-        console.log('MongoDB database connection failed');
+        console.log('MongoDB database connection failed', err);
     }
 };
-
-app.get("/", (req, res) => {
-    res.send("Hello");
-})
+connect(); // run immediately
 
 // middlewares
 app.use(cors(corsOptions));
 app.use(express.json());
 app.use(cookieParser());
+
+app.get("/", (req, res) => {
+    res.send("API is working 🚀");
+});
+
 app.use('/api/v1/auth', authRoute);
 app.use('/api/v1/rents', rentRoute);
 app.use('/api/v1/users', userRoute);
 app.use('/api/v1/review', reviewRoute);
 app.use('/api/v1/booking', bookingRoute);
-app.use("/rent-images",express.static(path.join(__dirname, 'public/rent-images')));
+app.use("/rent-images", express.static(path.join(__dirname, 'public/rent-images')));
 
-// app.use((err, req, res, next) => {
-//     if (err instanceof multer.MulterError) {
-//       console.error("Multer Error:", err);
-//       return res.status(400).json({ message: err.message });
-//     }
-//     next(err);
-//   });
-
-app.listen(port, () => {
-    connect();
-    console.log('server listening on port', port);
-})
+module.exports = app; // 👈 export for Vercel
