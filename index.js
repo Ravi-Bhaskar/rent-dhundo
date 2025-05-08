@@ -13,7 +13,7 @@ const bookingRoute = require('./routes/bookings');
 
 dotenv.config();
 const app = express();
-const port = process.env.PORT || 8000;
+const port = process.env.PORT || 4000;
 const corsOptions = {
     origin:"http://localhost:3000",
     credentials:true,
@@ -23,7 +23,7 @@ const corsOptions = {
 mongoose.set('strictQuery', false);
 const connect = async()=> {
     try {
-        await mongoose.connect(process.env.MONGO_URI);
+        await mongoose.connect("mongodb+srv://rentdhundo:rentdhundo2023@cluster0.qol7rh7.mongodb.net/rents_dhundo?retryWrites=true&w=majority");
 
         console.log('MongoDB database connected');
     } catch (err) {
