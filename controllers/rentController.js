@@ -60,7 +60,7 @@ exports.getSingleRent = async (req, res) => {
       .status(200)
       .json({ success: true, message: "Successfully Found", data: rent });
   } catch (err) {
-    res.status(404).json({ success: false, message: "Not Found" });
+    res.status(404).json({ success: false, message: "Single Rent Not Found" });
   }
 };
 
@@ -153,7 +153,7 @@ exports.getAllRent = async (req, res) => {
       data: rents,
     });
   } catch (err) {
-    res.status(404).json({ success: false, message: "Not Found" });
+    res.status(404).json({ success: false, message: "All Rent Not Found" });
   }
 };
 
@@ -174,7 +174,7 @@ exports.getRentBySearch = async (req, res) => {
       data: rents,
     });
   } catch (err) {
-    res.status(404).json({ success: false, message: "Not Found" });
+    res.status(404).json({ success: false, message: "Searched Rent Not Found" });
   }
 };
 
@@ -193,7 +193,7 @@ exports.getFeaturedRent = async (req, res) => {
       data: rents,
     });
   } catch (err) {
-    res.status(404).json({ success: false, message: "Not Found" });
+    res.status(404).json({ success: false, message: "Featured Rent Not Found" });
   }
 };
 
@@ -204,7 +204,7 @@ exports.getRentCount = async (req, res) => {
 
     res.status(200).json({ success: true, data: rentCount });
   } catch (err) {
-    res.status(500).json({ success: false, message: "Failed to fetch" });
+    res.status(500).json({ success: false, message: "Failed to fetch Rent Count" });
   }
 };
 
