@@ -31,6 +31,10 @@ const connect = async()=> {
     }
 };
 
+app.get("/", (req, res) => {
+    res.send("Hello");
+})
+
 // middlewares
 app.use(cors(corsOptions));
 app.use(express.json());
