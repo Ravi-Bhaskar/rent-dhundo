@@ -23,7 +23,7 @@ const corsOptions = {
 mongoose.set('strictQuery', false);
 const connect = async()=> {
     try {
-        await mongoose.connect("mongodb+srv://rentdhundo:rentdhundo2023@cluster0.qol7rh7.mongodb.net/rents_dhundo?retryWrites=true&w=majority");
+        await mongoose.connect(process.env.MONGO_URI);
 
         console.log('MongoDB database connected');
     } catch (err) {
